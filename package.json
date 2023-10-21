@@ -1,0 +1,90 @@
+{
+  "name": "@rainblock/merkle-patricia-tree",
+  "version": "5.0.0",
+  "description": "An implementation of the modified merkle patricia tree used in Ethereum, optimized for in-memory usage",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.js",
+  "scripts": {
+    "test": "npm run test:node && npm run test:browser",
+    "coverage": "istanbul cover ./test/index.js",
+    "coveralls": "npm run coverage && coveralls <coverage/lcov.info",
+    "lint": "gts check",
+    "prepublish": "npm run build",
+    "test:browser": "karma start karma.conf.js",
+    "test:node": "mocha -r ts-node/register src/**/*.spec.ts --timeout 40000",
+    "benchmark": "node -r ts-node/register src/index.bench.ts",
+    "build": "webpack",
+    "typedoc": "typedoc --out docs $(pwd)/src --target es6 --mode file --tsconfig ./tsconfig.json --excludePrivate --excludeProtected --excludeNotExported --exclude '**/*+(spec|bench).ts'",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "mkdir -p build/src; cp src/*.js build/src; tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RainBlock/merkle-patricia-tree.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RainBlock/merkle-patricia-tree/issues"
+  },
+  "keywords": [
+    "merkle",
+    "radix",
+    "trie",
+    "ethereum"
+  ],
+  "license": "MPL-2.0",
+  "dependencies": {
+    "async": "^1.4.2",
+    "bigint-hash": "^0.1.1",
+    "level-ws": "0.0.0",
+    "levelup": "^1.2.1",
+    "memdown": "^1.0.0",
+    "readable-stream": "^2.0.0",
+    "rlp": "^2.0.0",
+    "rlp-stream": "^0.1.0",
+    "semaphore": ">=1.0.1",
+    "ethereumjs-util": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/benchmark": "^1.0.31",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^10.14.4",
+    "benchmark": "^2.1.4",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
+    "gts": "^0.9.0",
+    "istanbul": "^0.4.1",
+    "karma": "^4.0.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-env-preprocessor": "^0.1.1",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-webpack": "^3.0.5",
+    "microtime": "^2.1.9",
+    "mocha": "^5.2.0",
+    "pre-commit": "^1.2.2",
+    "tape": "^4.10.1",
+    "ts-loader": "^4.5.0",
+    "ts-node": "^7.0.1",
+    "typedoc": "^0.14.2",
+    "typescript": "^3.4.3",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "contributors": [
+    "mjbecze <mjbecze@gmail.com>",
+    "Aaron Kumavis <http://aaron.kumavis.me/> (https://github.com/kumavis)",
+    "Michael Wei <mwei@vmware.com> (https://github.com/no2chem)"
+  ]
+}
